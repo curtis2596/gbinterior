@@ -1,0 +1,138 @@
+    .text-center {
+        text-align: center;
+    }
+
+    .pointer {
+        cursor: pointer;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .black_drop_container {
+        background-color: rgba(0, 0, 0, 0.4);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 3;
+    }
+
+    body>.black_drop_container {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .error-message {
+        color: red;
+        display: block;
+    }
+
+    .full-width-model .modal-dialog {
+        width: 95vw;
+        height: 80vw;
+        margin: 1vw auto;
+        max-width: 96vw;
+    }
+
+    .masonary {
+        background-color: #333;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .masonary .box {
+        position: relative;
+        width: 150px;
+        float: left;
+        margin-left: 10px;
+        margin-bottom: 20px;
+        background-color: #fff;
+        color: #333;
+        padding: 6px;
+    }
+
+    .masonary .box.selected {
+        background-color: #578ebe;
+        color: #FFF;
+    }
+
+    .masonary .main-img {
+        max-width: 100%;
+    }
+
+    .masonary .title {
+        display: block;
+        margin: 8px 0;
+        padding: 0;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .masonary .details {
+        display: inline-block;
+        font-size: 12px;
+    }
+
+    .masonary .box-icon {
+        display: inline-block;
+        font-size: 16px;
+        background-color: #FFF;
+        border-radius: 50% !important;
+        padding: 4px 8px;
+    }
+
+    .masonary .btn-delete {
+        position: absolute;
+        top: -10px;
+        right: -6px;
+        color: var(--bs-red);
+    }
+
+    .validate-barcode:focus {
+        background-color: lightpink;
+    }
+
+    .template-table {
+        display: block;
+    }
+
+    .template-table .icon {
+        font-size: 1.3em;
+        padding: 8px;
+        cursor: pointer;
+    }
+
+    .template-table .sr-table-template-move-up {
+        border-bottom: 1px solid #CCCCCC;
+    }
+
+    .template-table .block {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .template-table .block .left-block {
+        padding: 5px;
+        border-right: 1px solid #CCCCCC;
+    }
+
+    .template-table .block .right-block {
+        padding: 5px;
+    }
+
+    .template-table td,
+    .template-table th {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .template-table tr.highlight {
+        border: 2px solid rgba(75, 166, 239);
+    }
+
+    .template-table tr.highlight-danger {
+        border: 2px solid #fd625e;
+    }

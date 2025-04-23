@@ -1,0 +1,68 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 3, 2020, 5:06:29 PM
+    Author     : Hardeep
+*/
+
+.sr-ajax-file-upload
+{
+}
+
+.sr-ajax-file-upload .abort
+{
+    cursor: pointer;
+}
+
+.sr-ajax-file-upload-block .progress-status
+{
+    font-size: 0.8em;
+}
+
+.sr-ajax-file-upload-block .status
+{
+    padding: 0.5rem 1rem;
+}
+
+div.sr-ajax-file-upload-block
+{
+    border : 1px solid #007bff;
+    padding: 8px;
+}
+
+div.sr-ajax-file-upload-block .sr-ajax-file-upload-file-info
+{
+    margin : 0.75em 0 1em 0;
+}
+
+div.sr-ajax-file-upload-block .sr-ajax-file-upload-file-info .filename
+{
+    width : 50%;
+    float : left;
+}
+
+div.sr-ajax-file-upload-block .sr-ajax-file-upload-file-info .total-size
+{
+    width : 50%;
+    float : right;
+    text-align: right;
+}
+
+div.sr-ajax-file-upload-block .sr-ajax-file-upload-file-info .total-size:after
+{
+    float: clear;
+}
+
+div.sr-ajax-file-upload-block .sr-ajax-file-upload-file-info .abort
+{
+    margin-left : 10px;
+}
+
+tr.sr-ajax-file-upload-block .filename
+{
+    margin-bottom: 0.3em;
+    font-size: 0.85em;
+}

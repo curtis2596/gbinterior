@@ -1,0 +1,63 @@
+/**
+* @created 08-Oct-2023
+* @author Hardeep
+**/
+
+.loader-applied
+{
+    position: relative;
+}
+
+.loader-container
+{
+    position: absolute;
+    width : 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);    
+    top : 0;
+    left : 0;    
+    z-index: 2;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+body > .loader-container
+{
+    position: fixed;
+    height : 100vh;
+    z-index: 1056;
+}
+
+.loader-content
+{     
+    text-align: center;
+    color: white;
+    padding: 1em;
+    background-color: rgba(0,0,0,.1); 
+    border-radius: 1em;
+}
+
+.loader-content .loader-icon 
+{
+    width: 4em;
+    height: 4em;
+    border-width: 0.5em;
+}
+
+.loader-content .loader-info
+{
+    font-weight: bold;
+    margin-top: 0.75em;    
+}
+
+.loader-content .loader-footer
+{ 
+    margin-top: 1em;
+    border-top: 1px solid;
+    width: 100%;
+    padding: 0.25em;
+    text-align: left;
+}
+
+/*** ------------------------------------------------------------------------------ **/

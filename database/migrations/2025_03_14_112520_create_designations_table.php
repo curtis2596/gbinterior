@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateDesignationsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('designations', function (Blueprint $table) {
+            $table->id();
+            $table->string("name", 80)->unique();
+            $table->integer("list_display_order")->default(0);
+            $table->boolean("is_active");
+            $table->timestamps();
+            $table->bigInteger("created_by")->nullable();
+            $table->bigInteger("updated_by")->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('designations');
+    }
+}
