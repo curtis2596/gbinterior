@@ -508,6 +508,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get($controller_prefix . "-" . $name, [$controllerClass, $name])->name($controller_prefix . "." . $name);
     $name = "pdf";
     Route::get($controller_prefix . "-" . $name . "/{id}", [$controllerClass, $name])->name($controller_prefix . "." . $name);
+    $name = "print";
+    Route::get($controller_prefix . "-" . $name . "/{id}", [$controllerClass, $name])->name($controller_prefix . "." . $name);
     $name = "ajax_get_items";
     Route::get($controller_prefix . "-" . $name . "/{party_id}/{purchase_order_ids}/{id?}", [$controllerClass, $name])->name($controller_prefix . "." . $name);
     $name = "return_items";

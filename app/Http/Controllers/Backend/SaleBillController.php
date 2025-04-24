@@ -7,6 +7,7 @@ use App\Helpers\ArrayHelper;
 use App\Helpers\DateUtility;
 use App\Models\AutoIncreament;
 use App\Models\Company;
+use App\Models\Transport;
 use App\Models\Item;
 use App\Models\LedgerAccount;
 use App\Models\LedgerCategory;
@@ -76,7 +77,8 @@ class SaleBillController extends BackendController
         $model = new $this->modelClass();
         $model->voucher_no = AutoIncreament::getNextCounter(AutoIncreament::TYPE_SALE_BILL);
         $model->bill_date = date(DateUtility::DATE_OUT_FORMAT);
-
+        $transportes = Transport::where('is_active',1)->get(); 
+        
         $form = [
             'url' => route($this->routePrefix . '.store'),
             'method' => 'POST',
@@ -84,7 +86,7 @@ class SaleBillController extends BackendController
 
         $this->_set_list_for_form($model);
 
-        $this->setForView(compact("model", 'form'));
+        $this->setForView(compact("model", 'form','transportes'));
 
         return $this->view("form");
     }
@@ -145,6 +147,10 @@ class SaleBillController extends BackendController
         return [
             'sale_order_ids' => "",
             'party_id' => ['required'],
+            'transport' =>"",
+            'vehicle_no' =>"",
+            'dispatch' =>"",
+            'delivered' =>"",
             'bill_date' => ['required'],
             'reference_no' => [],
             'amount' => ['required'],
@@ -205,9 +211,7 @@ class SaleBillController extends BackendController
         $validatedData = $request->validate($rules, $messages);
 
         $validatedData = array_make_all_values_zero_if_null($validatedData);
-
-        // d($validatedData, true);
-
+ 
         try {
             DB::beginTransaction();
 
@@ -217,8 +221,7 @@ class SaleBillController extends BackendController
                 "sale_items",
             ]);
 
-            $save_data['voucher_no'] = AutoIncreament::getNextCounter(AutoIncreament::TYPE_SALE_BILL);
-            // dd($save_data);
+            $save_data['voucher_no'] = AutoIncreament::getNextCounter(AutoIncreament::TYPE_SALE_BILL); 
 
             $model = $this->modelClass::create($save_data);
             if (!$model) {
@@ -278,7 +281,7 @@ class SaleBillController extends BackendController
         ])->findOrFail($id);
 
         // d($model->toArray()); exit;
-
+        $transportes = Transport::where('is_active',1)->get(); 
         $this->beforeEditOrDelete($model);        
 
         $form = [
@@ -290,11 +293,27 @@ class SaleBillController extends BackendController
 
         $this->_set_list_for_form($model);
 
-        $this->setForView(compact("model", "form", "sale_items"));
+        $this->setForView(compact("model", "form", "sale_items",'transportes'));
 
         $view_name = $model->with_order ? "form_with_so" : "form";
 
         return $this->view($view_name);
+    }
+
+    public function print($id)
+    {
+        $model = $this->modelClass::with([
+            "saleBillItem",
+            'saleBillSaleOrder',
+            'transport',
+        ])->findOrFail($id);
+
+
+        // dd($model->toArray());
+
+        $this->setForView(compact("model"));
+
+        return $this->view(__FUNCTION__);
     }
 
     public function update($id, Request $request)

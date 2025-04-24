@@ -22,12 +22,43 @@ $page_header_links = [
             </div>
 
             <div class="row mb-3">
-                <div class="col-md-6 mb-2">
+                <div class="col-md-3 mb-2">
                     <div class="form-group">
                         <x-Inputs.drop-down id="party_id" name="party_id" label="Party"
                             :list="$partyList" :value="$model->party_id"
                             class="form-control select2" :mandatory="true" />
                     </div>
+                </div>
+                <div class="col-md-3 mb-2 transport-wrapper">
+                    <div class="form-group"> 
+                        <label class="form-label">Transport</label>
+                        <select id="transport" name="transport" class="form-control select2">
+                            <option value="">Select Transport</option>
+                            @foreach($transportes as $transport)
+                                <option value="{{ $transport->id }}" {{ !empty($model->transport) && $model->transport == $transport->id ? 'selected' : '' }}>{{ $transport->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div> 
+                <div class="col-md-3 mb-2" id="vehicle-field-wrapper" style="display:{{!empty($model->transport) ? '':'none'}};">
+                    @if(!empty($model->transport))
+                    <div class="form-group">
+                        <label class="form-label">Vehicle No</label>
+                        <input type="text" name="vehicle_no" class="form-control" value="{{$model->vehicle_no ?? ''}}" placeholder="Enter Vehicle No">
+                    </div>
+                    @endif
+                </div>
+                <div class="col-md-3 mb-2" id="vehicle-field-wrapper" > 
+                    <div class="form-group">
+                        <label class="form-label">Dispatch From</label>
+                        <input type="text" name="dispatch" class="form-control" value="{{$model->dispatch ?? ''}}" placeholder="Enter dispatch From">
+                    </div> 
+                </div>
+                <div class="col-md-3 mb-2" id="vehicle-field-wrapper"  > 
+                    <div class="form-group">
+                        <label class="form-label">Delivered At</label>
+                        <input type="text" name="delivered" class="form-control" value="{{$model->delivered ?? ''}}" placeholder="Enter delivered at">
+                    </div> 
                 </div>
                 <div class="col-md-3 mb-2">
                     <div class="form-group">
@@ -37,7 +68,7 @@ $page_header_links = [
                             label="Bill Date"
                             :value="$model->bill_date"
                             :mandatory="true"
-                            autocomplete="off" />
+                            autocomplete="off" /> 
                         @else
                         <x-Inputs.text-field name="bill_date"
                             class="form-control date-picker"
@@ -301,6 +332,24 @@ $page_header_links = [
     var company_state_id = '<?= $company->state_id ?>';
     var party = null;
     $(function() {
+        $('#transport').on('blur', function() {
+            let transportVal = $(this).val();
+
+            // Clear any existing vehicle number field first
+            $('#vehicle-field-wrapper').show();
+            $('#vehicle-field-wrapper').empty();
+
+            if (transportVal) {
+                // Append vehicle number field
+                $('#vehicle-field-wrapper').append(`
+                    <div class="form-group">
+                        <label class="form-label">Vehicle No</label>
+                        <input type="text" name="vehicle_no" class="form-control" placeholder="Enter Vehicle No">
+                    </div>
+                `);
+            }
+        });
+
         $(".template-table").srTableTemplate({
             afterRowAdd: function(_table, last_id, _tr) {
 

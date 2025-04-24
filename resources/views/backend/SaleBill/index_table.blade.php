@@ -69,6 +69,12 @@
                             class="btn btn-secondary btn-sm summary-action-button">
                             <i class="fas fa-suitcase"></i> Return
                         </a>
+
+                        <br/><br/>
+                        
+                        <a class="btn btn-secondary summary-action-button" href="{{ route($routePrefix . '.print',[$record->id]) }}">
+                            <i class="fas fa-print"></i> Print
+                        </a>
                         
                         <br/><br/>
                         

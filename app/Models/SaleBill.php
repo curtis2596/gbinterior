@@ -65,6 +65,10 @@ class SaleBill extends BaseModel
     {
         return $this->belongsTo(Party::class, 'party_id');
     }
+    public function transport()
+    {
+        return $this->belongsTo(Transport::class, 'id');
+    }
 
     public function saleBillItem()
     {

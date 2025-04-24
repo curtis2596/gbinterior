@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('sale_bills', function (Blueprint $table) {
             $table->id();
             $table->string('voucher_no', 80);
+            $table->integer('transport', 80)->nullable();
+            $table->string('vehicle_no', 255)->nullable();
+            $table->string('dispatch', 255)->nullable();
+            $table->string('delivered', 255)->nullable();
             $table->unsignedBigInteger('party_id');
             $table->date('bill_date');
             $table->string('reference_no', 80)->nullable();
