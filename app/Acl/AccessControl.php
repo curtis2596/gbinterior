@@ -21,6 +21,8 @@ class AccessControl
         return self::$instance;
     }
 
+    
+
     public function isAllow(String $route_name, array $role_id_list)
     {
         $route_name = trim($route_name);
